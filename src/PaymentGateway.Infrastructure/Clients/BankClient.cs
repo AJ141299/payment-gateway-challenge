@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
 using System.Text.Json;
-using PaymentGateway.Core.Interfaces;
-using PaymentGateway.Core.Interfaces.Models;
+using PaymentGateway.Core.Interfaces.Clients;
+using PaymentGateway.Core.Interfaces.Clients.Models;
 
 namespace PaymentGateway.Infrastructure.Clients;
 

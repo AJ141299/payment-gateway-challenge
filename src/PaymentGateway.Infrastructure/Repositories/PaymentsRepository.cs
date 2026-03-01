@@ -1,4 +1,5 @@
 ﻿using PaymentGateway.Core.Interfaces;
+using PaymentGateway.Core.Interfaces.Repositories;
 
 namespace PaymentGateway.Infrastructure.Repositories;
 

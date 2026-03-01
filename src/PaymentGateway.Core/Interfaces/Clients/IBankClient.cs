@@ -1,6 +1,6 @@
-using PaymentGateway.Core.Interfaces.Models;
+using PaymentGateway.Core.Interfaces.Clients.Models;
 
-namespace PaymentGateway.Core.Interfaces;
+namespace PaymentGateway.Core.Interfaces.Clients;
 
 public interface IBankClient
 {

@@ -1,4 +1,4 @@
-namespace PaymentGateway.Core.Interfaces;
+namespace PaymentGateway.Core.Interfaces.Repositories;
 
 public interface IPaymentsRepository
 {

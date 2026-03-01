@@ -1,4 +1,5 @@
 using PaymentGateway.Core.Interfaces;
+using PaymentGateway.Core.Interfaces.Clients;
 using PaymentGateway.Core.Services;
 using PaymentGateway.Infrastructure.Clients;
 using PaymentGateway.Infrastructure.Repositories;
