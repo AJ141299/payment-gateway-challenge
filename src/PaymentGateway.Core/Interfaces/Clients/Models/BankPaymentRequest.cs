@@ -10,7 +10,7 @@ public class BankPaymentRequest
     public required ulong Amount { get; init; }
     public required string Cvv { get; init; }
 
-    public static BankPaymentRequest FromDomain(PaymentRequest source) => new()
+    public static BankPaymentRequest FromDomain(PaymentDetails source) => new()
     {
         CardNumber = source.CardNumber,
         ExpiryDate = $"{source.ExpiryMonth:D2}/{source.ExpiryYear}",

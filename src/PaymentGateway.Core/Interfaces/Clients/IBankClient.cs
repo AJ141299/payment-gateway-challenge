@@ -4,5 +4,5 @@ namespace PaymentGateway.Core.Interfaces.Clients;
 
 public interface IBankClient
 {
-    Task<BankPaymentResponse?> MakePaymentAsync(BankPaymentRequest request, CancellationToken ct);
+    Task<BankPaymentResponse?> AuthorizePaymentAsync(BankPaymentRequest request, CancellationToken ct);
 }
