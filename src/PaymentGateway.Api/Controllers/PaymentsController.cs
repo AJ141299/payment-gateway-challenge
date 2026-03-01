@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PaymentGateway.Api.Models.Responses;
-using PaymentGateway.Api.Services;
+using PaymentGateway.Infrastructure.Repositories;
 
 namespace PaymentGateway.Api.Controllers;
 
@@ -18,8 +18,6 @@ public class PaymentsController : Controller
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<PostPaymentResponse?>> GetPaymentAsync(Guid id)
     {
-        var payment = _paymentsRepository.Get(id);
-
-        return new OkObjectResult(payment);
+        return Ok();
     }
 }

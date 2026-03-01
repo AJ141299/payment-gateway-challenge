@@ -1,4 +1,4 @@
-namespace PaymentGateway.Api.Clients.Models;
+namespace PaymentGateway.Core.Interfaces.Models;
 
 public class BankPaymentResponse
 {

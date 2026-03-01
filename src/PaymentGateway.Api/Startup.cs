@@ -1,5 +1,7 @@
-using PaymentGateway.Api.Clients;
-using PaymentGateway.Api.Services;
+using PaymentGateway.Core.Interfaces;
+using PaymentGateway.Core.Services;
+using PaymentGateway.Infrastructure.Clients;
+using PaymentGateway.Infrastructure.Repositories;
 
 namespace PaymentGateway.Api;
 
@@ -12,6 +14,7 @@ public static class Startup
         builder.Services.AddSwaggerGen();
         builder.Services.AddSingleton<PaymentsRepository>();
         builder.AddClients();
+        builder.AddServices();
     }
     
     public static void ConfigureApp(this WebApplication app)
@@ -34,5 +37,10 @@ public static class Startup
             c.BaseAddress = new Uri("http://localhost:8080");
             c.Timeout = TimeSpan.FromSeconds(30);
         });
+    }
+    
+    private static void AddServices(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddSingleton<IPaymentsService, PaymentsService>();
     }
 }

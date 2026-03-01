@@ -1,6 +1,6 @@
-using PaymentGateway.Api.Clients;
+using PaymentGateway.Core.Interfaces;
 
-namespace PaymentGateway.Api.Services;
+namespace PaymentGateway.Core.Services;
 
 public class PaymentsService(IBankClient bankClient) : IPaymentsService
 {
@@ -8,8 +8,4 @@ public class PaymentsService(IBankClient bankClient) : IPaymentsService
     {
         
     }
-}
-
-public interface IPaymentsService
-{
 }

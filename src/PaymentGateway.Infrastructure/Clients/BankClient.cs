@@ -1,8 +1,9 @@
+using System.Net.Http.Json;
 using System.Text.Json;
+using PaymentGateway.Core.Interfaces;
+using PaymentGateway.Core.Interfaces.Models;
 
-using PaymentGateway.Api.Clients.Models;
-
-namespace PaymentGateway.Api.Clients;
+namespace PaymentGateway.Infrastructure.Clients;
 
 public class BankClient(HttpClient client) : IBankClient
 {
