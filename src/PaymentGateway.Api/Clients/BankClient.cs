@@ -1,5 +1,7 @@
 using System.Text.Json;
 
+using PaymentGateway.Api.Clients.Models;
+
 namespace PaymentGateway.Api.Clients;
 
 public class BankClient(HttpClient client) : IBankClient
@@ -17,24 +19,4 @@ public class BankClient(HttpClient client) : IBankClient
         
         return response.Content.ReadFromJsonAsync<BankPaymentResponse>(cancellationToken: ct).Result;
     }
-}
-
-public interface IBankClient
-{
-    Task<BankPaymentResponse?> MakePaymentAsync(BankPaymentRequest request, CancellationToken ct);
-}
-
-public record BankPaymentRequest
-{
-    public required string CardNumber { get; init; }
-    public required string ExpiryDate { get; init; }
-    public required string Currency { get; init; }
-    public required int Amount { get; init; }
-    public required string Cvv { get; init; }
-}
-
-public class BankPaymentResponse
-{
-    public required string Authorized { get; init; }
-    public required string AuthorizationCode { get; init; }
 }
