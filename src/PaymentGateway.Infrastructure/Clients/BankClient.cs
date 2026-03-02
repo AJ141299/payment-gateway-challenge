@@ -17,7 +17,7 @@ public class BankClient(HttpClient client) : IBankClient
 
             response.EnsureSuccessStatusCode();
 
-            return response.Content.ReadFromJsonAsync<BankPaymentResponse>(cancellationToken: ct).Result;
+            return response.Content.ReadFromJsonAsync<BankPaymentResponse>(options, cancellationToken: ct).Result;
         }
         catch (Exception e)
         {
