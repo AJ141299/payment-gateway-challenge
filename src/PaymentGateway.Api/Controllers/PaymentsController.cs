@@ -5,7 +5,7 @@ using PaymentGateway.Core.Services;
 
 namespace PaymentGateway.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/v1/payments")]
 [ApiController]
 public class PaymentsController(IPaymentsService paymentsService) : ControllerBase
 {
