@@ -1,4 +1,3 @@
-using PaymentGateway.Core.Interfaces;
 using PaymentGateway.Core.Interfaces.Clients;
 using PaymentGateway.Core.Services;
 using PaymentGateway.Infrastructure.Clients;
@@ -13,7 +12,7 @@ public static class Startup
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-        builder.Services.AddSingleton<PaymentsRepository>();
+        builder.Services.AddSingleton<PaymentsResultResultRepository>();
         builder.AddClients();
         builder.AddServices();
     }

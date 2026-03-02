@@ -2,7 +2,7 @@ using PaymentGateway.Core.Domain.Enums;
 
 namespace PaymentGateway.Core.Domain.Models;
 
-public class PaymentOutcome
+public class Payment
 {
     public required string Id { get; set; }
     public required PaymentStatus Status { get; set; }

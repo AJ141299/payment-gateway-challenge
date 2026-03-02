@@ -1,23 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PaymentGateway.Api.Models.Requests;
 using PaymentGateway.Api.Models.Responses;
-using PaymentGateway.Infrastructure.Repositories;
+using PaymentGateway.Core.Services;
 
 namespace PaymentGateway.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class PaymentsController : Controller
+public class PaymentsController(IPaymentsService paymentsService) : ControllerBase
 {
-    private readonly PaymentsRepository _paymentsRepository;
-
-    public PaymentsController(PaymentsRepository paymentsRepository)
+    [HttpPost("process")]
+    public async Task<ActionResult> ProcessPaymentAsync(ProcessPaymentRequest request, CancellationToken ct)
     {
-        _paymentsRepository = paymentsRepository;
+        var payment = await paymentsService.ProcessPaymentAsync(request.ToPaymentDetails(), ct);
+        
+        return Ok(ProcessPaymentResponse.FromPayment(payment));
     }
 
-    [HttpGet("{id:guid}")]
-    public async Task<ActionResult<PostPaymentResponse?>> GetPaymentAsync(Guid id)
+    [HttpGet("{id}")]
+    public ActionResult<ProcessPaymentResponse?> GetPaymentAsync([FromRoute] string id)
     {
-        return Ok();
+        var payment = paymentsService.GetPayment(id);
+        if (payment == null)
+        {
+            return NotFound();
+        }
+        
+        return Ok(payment);
     }
 }

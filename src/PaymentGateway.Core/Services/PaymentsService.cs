@@ -6,9 +6,9 @@ using PaymentGateway.Core.Interfaces.Repositories;
 
 namespace PaymentGateway.Core.Services;
 
-public class PaymentsService(IBankClient bankClient, IPaymentsRepository paymentsRepository) : IPaymentsService
+public class PaymentsService(IBankClient bankClient, IPaymentsResultRepository paymentsResultRepository) : IPaymentsService
 {
-    public async Task<PaymentOutcome> ProcessPaymentAsync(PaymentDetails paymentDetails, CancellationToken ct = default)
+    public async Task<Payment> ProcessPaymentAsync(PaymentDetails paymentDetails, CancellationToken ct = default)
     {
         var paymentId = Guid.NewGuid().ToString();
         
@@ -19,7 +19,7 @@ public class PaymentsService(IBankClient bankClient, IPaymentsRepository payment
             // TODO: throw a business exception
         }
         
-        var outcome = new PaymentOutcome
+        var result = new Payment
         {
             Id = paymentId,
             Status = bankResponse.Authorized ? PaymentStatus.Authorized : PaymentStatus.Declined,
@@ -30,8 +30,13 @@ public class PaymentsService(IBankClient bankClient, IPaymentsRepository payment
             Amount = paymentDetails.Amount
         };
         
-        // TODO: save outcome in repository
+        paymentsResultRepository.Add(result);
 
-        return outcome;
+        return result;
+    }
+    
+    public Payment? GetPayment(string id)
+    {
+        return paymentsResultRepository.Get(id);
     }
 }
