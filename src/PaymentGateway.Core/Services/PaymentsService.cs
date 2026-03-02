@@ -26,7 +26,7 @@ public class PaymentsService(IBankClient bankClient, IPaymentsRepository payment
             CardNumberLastFour = paymentDetails.CardNumber[^4..],
             ExpiryMonth = paymentDetails.ExpiryMonth,
             ExpiryYear = paymentDetails.ExpiryYear,
-            CurrencyIso3 = paymentDetails.CurrencyIso3,
+            Currency = paymentDetails.Currency,
             Amount = paymentDetails.Amount
         };
         

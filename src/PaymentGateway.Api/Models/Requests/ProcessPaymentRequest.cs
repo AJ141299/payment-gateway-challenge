@@ -16,7 +16,7 @@ public class ProcessPaymentRequest
         CardNumber = CardNumber,
         ExpiryMonth = ExpiryMonth,
         ExpiryYear = ExpiryYear,
-        CurrencyIso3 = Currency,
+        Currency = Currency,
         Amount = Amount,
         Cvv = Cvv
     };

@@ -21,7 +21,7 @@ public class ProcessPaymentResponse
         CardNumberLastFour = payment.CardNumberLastFour,
         ExpiryMonth = payment.ExpiryMonth,
         ExpiryYear = payment.ExpiryYear,
-        Currency = payment.CurrencyIso3,
+        Currency = payment.Currency,
         Amount = payment.Amount
     };
 }

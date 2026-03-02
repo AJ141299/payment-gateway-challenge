@@ -14,7 +14,7 @@ public class BankPaymentRequest
     {
         CardNumber = source.CardNumber,
         ExpiryDate = $"{source.ExpiryMonth:D2}/{source.ExpiryYear}",
-        Currency = source.CurrencyIso3,
+        Currency = source.Currency,
         Amount = source.Amount,
         Cvv = source.Cvv
     };
