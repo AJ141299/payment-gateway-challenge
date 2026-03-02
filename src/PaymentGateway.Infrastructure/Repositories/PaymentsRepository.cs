@@ -3,7 +3,7 @@ using PaymentGateway.Core.Interfaces.Repositories;
 
 namespace PaymentGateway.Infrastructure.Repositories;
 
-public class PaymentsResultResultRepository : IPaymentsResultRepository
+public class PaymentsRepository : IPaymentsRepository
 {
     public List<Payment> PaymentResults = new();
     

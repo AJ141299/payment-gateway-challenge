@@ -1,4 +1,5 @@
 using PaymentGateway.Core.Interfaces.Clients;
+using PaymentGateway.Core.Interfaces.Repositories;
 using PaymentGateway.Core.Services;
 using PaymentGateway.Infrastructure.Clients;
 using PaymentGateway.Infrastructure.Repositories;
@@ -12,9 +13,10 @@ public static class Startup
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-        builder.Services.AddSingleton<PaymentsResultResultRepository>();
+        builder.Services.AddSingleton<PaymentsRepository>();
         builder.AddClients();
         builder.AddServices();
+        builder.AddRepositories();
     }
     
     public static void ConfigureApp(this WebApplication app)
@@ -42,5 +44,10 @@ public static class Startup
     private static void AddServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddSingleton<IPaymentsService, PaymentsService>();
+    }
+    
+    private static void AddRepositories(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddSingleton<IPaymentsRepository, PaymentsRepository>();
     }
 }

@@ -6,7 +6,7 @@ using PaymentGateway.Core.Interfaces.Repositories;
 
 namespace PaymentGateway.Core.Services;
 
-public class PaymentsService(IBankClient bankClient, IPaymentsResultRepository paymentsResultRepository) : IPaymentsService
+public class PaymentsService(IBankClient bankClient, IPaymentsRepository paymentsRepository) : IPaymentsService
 {
     public async Task<Payment> ProcessPaymentAsync(PaymentDetails paymentDetails, CancellationToken ct = default)
     {
@@ -30,13 +30,13 @@ public class PaymentsService(IBankClient bankClient, IPaymentsResultRepository p
             Amount = paymentDetails.Amount
         };
         
-        paymentsResultRepository.Add(result);
+        paymentsRepository.Add(result);
 
         return result;
     }
     
     public Payment? GetPayment(string id)
     {
-        return paymentsResultRepository.Get(id);
+        return paymentsRepository.Get(id);
     }
 }
