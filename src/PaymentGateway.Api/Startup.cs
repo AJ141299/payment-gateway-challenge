@@ -1,3 +1,7 @@
+using FluentValidation;
+
+using PaymentGateway.Api.Models.Requests;
+using PaymentGateway.Api.Validators;
 using PaymentGateway.Core.Interfaces.Clients;
 using PaymentGateway.Core.Interfaces.Repositories;
 using PaymentGateway.Core.Services;
@@ -17,6 +21,7 @@ public static class Startup
         builder.AddClients();
         builder.AddServices();
         builder.AddRepositories();
+        builder.AddValidators();
     }
     
     public static void ConfigureApp(this WebApplication app)
@@ -49,5 +54,10 @@ public static class Startup
     private static void AddRepositories(this WebApplicationBuilder builder)
     {
         builder.Services.AddSingleton<IPaymentsRepository, PaymentsRepository>();
+    }
+    
+    private static void AddValidators(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddSingleton<IValidator<ProcessPaymentRequest>, ProcessPaymentRequestValidator>();
     }
 }
