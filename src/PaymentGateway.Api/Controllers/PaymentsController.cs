@@ -18,7 +18,12 @@ public class PaymentsController(
         var result = await processPaymentValidator.ValidateAsync(request, ct);
         if (!result.IsValid)
         {
-            return BadRequest(result.ToDictionary());
+            var errors = result.Errors.Select(e => new 
+            {
+                code = e.ErrorCode,
+                message = e.ErrorMessage
+            });
+            return BadRequest(new { errors });
         }
         
         var payment = await paymentsService.ProcessPaymentAsync(request.ToPaymentDetails(), ct);
