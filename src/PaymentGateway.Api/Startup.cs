@@ -1,7 +1,5 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
-
 using FluentValidation;
 using PaymentGateway.Api.Models.Requests;
 using PaymentGateway.Api.Validators;

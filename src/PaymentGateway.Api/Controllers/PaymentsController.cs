@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-
 using Microsoft.AspNetCore.Mvc;
 using PaymentGateway.Api.Models.Requests;
 using PaymentGateway.Api.Models.Responses;
