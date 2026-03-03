@@ -24,7 +24,6 @@ public static class Startup
         
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-        builder.Services.AddSingleton<PaymentsRepository>();
         builder.AddClients();
         builder.AddServices();
         builder.AddRepositories();
