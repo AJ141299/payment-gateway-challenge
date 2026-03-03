@@ -47,6 +47,22 @@ public class PaymentsControllerTests
     }
 
     #region ProcessPaymentAsync
+    
+    [Fact]
+    public async Task ProcessPaymentAsync_CallsValidator()
+    {
+        // Arrange
+        _validator.ValidateAsync(ValidRequest, Arg.Any<CancellationToken>())
+            .Returns(new ValidationResult());
+        _paymentsService.ProcessPaymentAsync(Arg.Any<PaymentDetails>(), Arg.Any<CancellationToken>())
+            .Returns(ValidPayment);
+
+        // Act
+        await _sut.ProcessPaymentAsync(ValidRequest, CancellationToken.None);
+
+        // Assert
+        await _validator.Received(1).ValidateAsync(ValidRequest, Arg.Any<CancellationToken>());
+    }
 
     [Fact]
     public async Task ProcessPaymentAsync_WhenRequestIsValid_Returns200()
