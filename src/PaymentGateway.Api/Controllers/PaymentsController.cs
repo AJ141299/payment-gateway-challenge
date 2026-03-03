@@ -13,7 +13,9 @@ public class PaymentsController(
     IValidator<ProcessPaymentRequest> processPaymentValidator) : ControllerBase
 {
     [HttpPost("process")]
-    public async Task<ActionResult> ProcessPaymentAsync(ProcessPaymentRequest request, CancellationToken ct)
+    [ProducesResponseType(typeof(ProcessPaymentResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ProcessPaymentAsync(ProcessPaymentRequest request, CancellationToken ct)
     {
         var result = await processPaymentValidator.ValidateAsync(request, ct);
         if (!result.IsValid)
@@ -32,7 +34,9 @@ public class PaymentsController(
     }
 
     [HttpGet("{id}")]
-    public ActionResult<ProcessPaymentResponse?> GetPaymentAsync([FromRoute] string id)
+    [ProducesResponseType(typeof(GetPaymentResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult GetPaymentAsync([FromRoute] string id)
     {
         var payment = paymentsService.GetPayment(id);
         if (payment == null)
@@ -40,6 +44,6 @@ public class PaymentsController(
             return NotFound();
         }
         
-        return Ok(payment);
+        return Ok(GetPaymentResponse.FromPayment(payment));
     }
 }
