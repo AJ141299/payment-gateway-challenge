@@ -1,5 +1,6 @@
 using PaymentGateway.Core.Domain.Enums;
 using PaymentGateway.Core.Domain.Models;
+using PaymentGateway.Core.Exceptions;
 using PaymentGateway.Core.Interfaces.Clients;
 using PaymentGateway.Core.Interfaces.Clients.Models;
 using PaymentGateway.Core.Interfaces.Repositories;
@@ -16,7 +17,7 @@ public class PaymentsService(IBankClient bankClient, IPaymentsRepository payment
         var bankResponse = await bankClient.AuthorizePaymentAsync(bankRequest, ct);
         if (bankResponse == null)
         {
-            // TODO: throw a business exception
+            throw new PaymentProcessingException();
         }
         
         var result = new Payment
