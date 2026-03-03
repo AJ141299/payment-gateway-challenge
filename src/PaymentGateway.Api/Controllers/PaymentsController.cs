@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PaymentGateway.Api.Models.Requests;
 using PaymentGateway.Api.Models.Responses;
+using PaymentGateway.Core.Exceptions;
 using PaymentGateway.Core.Services;
 
 namespace PaymentGateway.Api.Controllers;
@@ -17,20 +18,23 @@ public class PaymentsController(
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ProcessPaymentAsync(ProcessPaymentRequest request, CancellationToken ct)
     {
-        var result = await processPaymentValidator.ValidateAsync(request, ct);
-        if (!result.IsValid)
+        try
         {
-            var errors = result.Errors.Select(e => new 
+            var result = await processPaymentValidator.ValidateAsync(request, ct);
+            if (!result.IsValid)
             {
-                code = e.ErrorCode,
-                message = e.ErrorMessage
-            });
-            return BadRequest(new { errors });
+                var errors = result.Errors.Select(e => new { code = e.ErrorCode, message = e.ErrorMessage });
+                return BadRequest(new { errors });
+            }
+
+            var payment = await paymentsService.ProcessPaymentAsync(request.ToPaymentDetails(), ct);
+
+            return Ok(ProcessPaymentResponse.FromPayment(payment));
         }
-        
-        var payment = await paymentsService.ProcessPaymentAsync(request.ToPaymentDetails(), ct);
-        
-        return Ok(ProcessPaymentResponse.FromPayment(payment));
+        catch (PaymentProcessingException)
+        {
+            return StatusCode(StatusCodes.Status502BadGateway);
+        }
     }
 
     [HttpGet("{id}")]

@@ -7,15 +7,25 @@ public class FakeBankHttpHandler : HttpMessageHandler
 {
     private bool _authorized;
     private string _authCode = string.Empty;
+    private HttpStatusCode _statusCode = HttpStatusCode.OK;
 
     public void RespondWith(bool authorized, string authCode)
     {
         _authorized = authorized;
         _authCode = authCode;
+        _statusCode = HttpStatusCode.OK;
+    }
+
+    public void RespondWith(HttpStatusCode statusCode)
+    {
+        _statusCode = statusCode;
     }
 
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct)
     {
+        if (_statusCode != HttpStatusCode.OK)
+            return Task.FromResult(new HttpResponseMessage(_statusCode));
+
         var body = JsonSerializer.Serialize(new
         {
             authorized = _authorized,

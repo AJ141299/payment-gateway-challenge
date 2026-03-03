@@ -144,7 +144,7 @@ namespace PaymentGateway.IntegrationTests.Features
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successfully retrieve an existing payment", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 2
+#line 3
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -154,16 +154,16 @@ namespace PaymentGateway.IntegrationTests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 3
+#line 4
         await testRunner.GivenAsync("a payment exists with id \"abc-123\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 4
+#line 5
         await testRunner.WhenAsync("I request the payment with id \"abc-123\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 5
+#line 6
         await testRunner.ThenAsync("the response status should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 6
+#line 7
         await testRunner.AndAsync("the response should contain the payment details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -181,7 +181,7 @@ namespace PaymentGateway.IntegrationTests.Features
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Payment not found", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 8
+#line 9
     this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -191,13 +191,13 @@ namespace PaymentGateway.IntegrationTests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 9
+#line 10
         await testRunner.GivenAsync("no payment exists with id \"xyz-999\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 11
         await testRunner.WhenAsync("I request the payment with id \"xyz-999\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 12
         await testRunner.ThenAsync("the response status should be 404", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }

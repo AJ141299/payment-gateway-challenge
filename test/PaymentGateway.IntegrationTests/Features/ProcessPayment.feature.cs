@@ -105,7 +105,7 @@ namespace PaymentGateway.IntegrationTests.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/ProcessPayment.feature.ndjson", 11);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/ProcessPayment.feature.ndjson", 5);
         }
         
         async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
@@ -145,7 +145,7 @@ namespace PaymentGateway.IntegrationTests.Features
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 3
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+    this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -155,16 +155,16 @@ namespace PaymentGateway.IntegrationTests.Features
             {
                 await this.ScenarioStartAsync();
 #line 4
-    await testRunner.GivenAsync("the bank will authorize the payment", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+        await testRunner.GivenAsync("the bank will authorize the payment", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 5
-    await testRunner.WhenAsync("I submit a valid payment request", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+        await testRunner.WhenAsync("I submit a valid payment request", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 6
-    await testRunner.ThenAsync("the response status should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+        await testRunner.ThenAsync("the response status should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
 #line 7
-    await testRunner.AndAsync("the response should contain an authorized payment", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+        await testRunner.AndAsync("the response should contain an authorized payment", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -182,7 +182,7 @@ namespace PaymentGateway.IntegrationTests.Features
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 9
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+    this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -192,34 +192,34 @@ namespace PaymentGateway.IntegrationTests.Features
             {
                 await this.ScenarioStartAsync();
 #line 10
-    await testRunner.GivenAsync("the bank will decline the payment", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+        await testRunner.GivenAsync("the bank will decline the payment", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 11
-    await testRunner.WhenAsync("I submit a valid payment request", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+        await testRunner.WhenAsync("I submit a valid payment request", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 12
-    await testRunner.ThenAsync("the response status should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+        await testRunner.ThenAsync("the response status should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
 #line 13
-    await testRunner.AndAsync("the response should contain a declined payment", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+        await testRunner.AndAsync("the response should contain a declined payment", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="Payment request with missing card number returns 400")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Bank unavailable returns 502")]
         [global::Xunit.TraitAttribute("FeatureTitle", "Process Payment")]
-        [global::Xunit.TraitAttribute("Description", "Payment request with missing card number returns 400")]
-        public async global::System.Threading.Tasks.Task PaymentRequestWithMissingCardNumberReturns400()
+        [global::Xunit.TraitAttribute("Description", "Bank unavailable returns 502")]
+        public async global::System.Threading.Tasks.Task BankUnavailableReturns502()
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "2";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Payment request with missing card number returns 400", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Bank unavailable returns 502", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 15
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+    this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -229,217 +229,13 @@ namespace PaymentGateway.IntegrationTests.Features
             {
                 await this.ScenarioStartAsync();
 #line 16
-    await testRunner.WhenAsync("I submit a payment request without a card number", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+        await testRunner.GivenAsync("the bank is unavailable", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 17
-    await testRunner.ThenAsync("the response status should be 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+        await testRunner.WhenAsync("I submit a valid payment request", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 18
-    await testRunner.AndAsync("the error code \"CARD_NUMBER_REQUIRED\" should be present", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.SkippableFactAttribute(DisplayName="Payment request with non-numeric card number returns 400")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Process Payment")]
-        [global::Xunit.TraitAttribute("Description", "Payment request with non-numeric card number returns 400")]
-        public async global::System.Threading.Tasks.Task PaymentRequestWithNon_NumericCardNumberReturns400()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "3";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Payment request with non-numeric card number returns 400", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 20
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 21
-    await testRunner.WhenAsync("I submit a payment request with card number \"abcd1234abcd1234\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 22
-    await testRunner.ThenAsync("the response status should be 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-#line 23
-    await testRunner.AndAsync("the error code \"CARD_NUMBER_INVALID_FORMAT\" should be present", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.SkippableFactAttribute(DisplayName="Payment request with invalid card number length returns 400")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Process Payment")]
-        [global::Xunit.TraitAttribute("Description", "Payment request with invalid card number length returns 400")]
-        public async global::System.Threading.Tasks.Task PaymentRequestWithInvalidCardNumberLengthReturns400()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "4";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Payment request with invalid card number length returns 400", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 25
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 26
-    await testRunner.WhenAsync("I submit a payment request with card number \"1234\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 27
-    await testRunner.ThenAsync("the response status should be 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-#line 28
-    await testRunner.AndAsync("the error code \"CARD_NUMBER_INVALID_LENGTH\" should be present", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.SkippableFactAttribute(DisplayName="Payment request with invalid expiry month returns 400")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Process Payment")]
-        [global::Xunit.TraitAttribute("Description", "Payment request with invalid expiry month returns 400")]
-        public async global::System.Threading.Tasks.Task PaymentRequestWithInvalidExpiryMonthReturns400()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "5";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Payment request with invalid expiry month returns 400", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 30
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 31
-    await testRunner.WhenAsync("I submit a payment request with expiry month 13", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 32
-    await testRunner.ThenAsync("the response status should be 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-#line 33
-    await testRunner.AndAsync("the error code \"EXPIRY_MONTH_INVALID\" should be present", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.SkippableFactAttribute(DisplayName="Payment request with expired card returns 400")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Process Payment")]
-        [global::Xunit.TraitAttribute("Description", "Payment request with expired card returns 400")]
-        public async global::System.Threading.Tasks.Task PaymentRequestWithExpiredCardReturns400()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "6";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Payment request with expired card returns 400", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 35
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 36
-    await testRunner.WhenAsync("I submit a payment request with expiry month 1 and expiry year 2020", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 37
-    await testRunner.ThenAsync("the response status should be 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-#line 38
-    await testRunner.AndAsync("the error code \"EXPIRY_DATE_IN_PAST\" should be present", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.SkippableFactAttribute(DisplayName="Payment request with unsupported currency returns 400")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Process Payment")]
-        [global::Xunit.TraitAttribute("Description", "Payment request with unsupported currency returns 400")]
-        public async global::System.Threading.Tasks.Task PaymentRequestWithUnsupportedCurrencyReturns400()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "7";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Payment request with unsupported currency returns 400", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 40
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 41
-    await testRunner.WhenAsync("I submit a payment request with currency \"EUR\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 42
-    await testRunner.ThenAsync("the response status should be 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-#line 43
-    await testRunner.AndAsync("the error code \"CURRENCY_NOT_SUPPORTED\" should be present", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.SkippableFactAttribute(DisplayName="Payment request with invalid CVV returns 400")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Process Payment")]
-        [global::Xunit.TraitAttribute("Description", "Payment request with invalid CVV returns 400")]
-        public async global::System.Threading.Tasks.Task PaymentRequestWithInvalidCVVReturns400()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "8";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Payment request with invalid CVV returns 400", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 45
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 46
-    await testRunner.WhenAsync("I submit a payment request with CVV \"ab\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 47
-    await testRunner.ThenAsync("the response status should be 400", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-#line 48
-    await testRunner.AndAsync("the error code \"CVV_INVALID_FORMAT\" should be present", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+        await testRunner.ThenAsync("the response status should be 502", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

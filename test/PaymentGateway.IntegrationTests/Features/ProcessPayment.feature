@@ -11,3 +11,8 @@ Feature: Process Payment
         When I submit a valid payment request
         Then the response status should be 200
         And the response should contain a declined payment
+    
+    Scenario: Bank unavailable returns 502
+        Given the bank is unavailable
+        When I submit a valid payment request
+        Then the response status should be 502

@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -48,6 +49,13 @@ public class ProcessPaymentSteps
     {
         var factory = _scenarioContext.Get<TestWebApplicationFactory>("Factory");
         factory.BankHandler.RespondWith(authorized: false, authCode: string.Empty);
+    }
+    
+    [Given("the bank is unavailable")]
+    public void GivenTheBankIsUnavailable()
+    {
+        var factory = _scenarioContext.Get<TestWebApplicationFactory>("Factory");
+        factory.BankHandler.RespondWith(statusCode: HttpStatusCode.ServiceUnavailable);
     }
 
     [When("I submit a valid payment request")]

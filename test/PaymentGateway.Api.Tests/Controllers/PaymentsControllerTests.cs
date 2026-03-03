@@ -2,11 +2,14 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
+using NSubstitute.ExceptionExtensions;
+
 using PaymentGateway.Api.Controllers;
 using PaymentGateway.Api.Models.Requests;
 using PaymentGateway.Api.Models.Responses;
 using PaymentGateway.Core.Domain.Enums;
 using PaymentGateway.Core.Domain.Models;
+using PaymentGateway.Core.Exceptions;
 using PaymentGateway.Core.Services;
 using Shouldly;
 
@@ -138,6 +141,23 @@ public class PaymentsControllerTests
         // Assert
         await _paymentsService.DidNotReceive()
             .ProcessPaymentAsync(Arg.Any<PaymentDetails>(), Arg.Any<CancellationToken>());
+    }
+    
+    [Fact]
+    public async Task ProcessPaymentAsync_WhenServiceThrowsPaymentProcessingException_Returns502()
+    {
+        // Arrange
+        _validator.ValidateAsync(ValidRequest, Arg.Any<CancellationToken>())
+            .Returns(new ValidationResult());
+        _paymentsService.ProcessPaymentAsync(Arg.Any<PaymentDetails>(), Arg.Any<CancellationToken>())
+            .Throws(new PaymentProcessingException());
+
+        // Act
+        var result = await _sut.ProcessPaymentAsync(ValidRequest, CancellationToken.None);
+
+        // Assert
+        result.ShouldBeOfType<StatusCodeResult>()
+            .StatusCode.ShouldBe(502);
     }
 
     #endregion
