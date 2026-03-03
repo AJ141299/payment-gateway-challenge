@@ -1,5 +1,8 @@
-using FluentValidation;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
+using FluentValidation;
 using PaymentGateway.Api.Models.Requests;
 using PaymentGateway.Api.Validators;
 using PaymentGateway.Core.Interfaces.Clients;
@@ -14,7 +17,13 @@ public static class Startup
 {
     public static void ConfigureServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers();
+        builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
+        
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddSingleton<PaymentsRepository>();

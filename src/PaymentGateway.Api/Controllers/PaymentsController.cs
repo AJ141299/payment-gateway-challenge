@@ -16,7 +16,7 @@ public class PaymentsController(
     [HttpPost("process")]
     public async Task<ActionResult> ProcessPaymentAsync(ProcessPaymentRequest request, CancellationToken ct)
     {
-        var result = await processPaymentValidator.ValidateAsync(request);
+        var result = await processPaymentValidator.ValidateAsync(request, ct);
         if (!result.IsValid)
         {
             return BadRequest(result.ToDictionary());
