@@ -1,0 +1,14 @@
+using PaymentGateway.Core.Domain.Enums;
+
+namespace PaymentGateway.Core.Domain.Models;
+
+public class Payment
+{
+    public required string Id { get; set; }
+    public required PaymentStatus Status { get; set; }
+    public required string CardNumberLastFour { get; set; }
+    public required int ExpiryMonth { get; set; }
+    public required int ExpiryYear { get; set; }
+    public required string Currency { get; set; }
+    public required ulong Amount { get; set; }
+}

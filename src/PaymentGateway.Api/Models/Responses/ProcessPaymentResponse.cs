@@ -3,7 +3,7 @@ using PaymentGateway.Core.Domain.Models;
 
 namespace PaymentGateway.Api.Models.Responses;
 
-public class GetPaymentResponse
+public class ProcessPaymentResponse
 {
     public required string Id { get; set; }
     public required PaymentStatus Status { get; set; }
@@ -13,7 +13,7 @@ public class GetPaymentResponse
     public required string Currency { get; set; }
     public required ulong Amount { get; set; }
 
-    public static GetPaymentResponse FromPayment(Payment payment) => new()
+    public static ProcessPaymentResponse FromPayment(Payment payment) => new()
     {
         Id = payment.Id,
         Status = payment.Status,
