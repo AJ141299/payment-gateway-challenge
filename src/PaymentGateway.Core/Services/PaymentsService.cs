@@ -11,8 +11,6 @@ public class PaymentsService(IBankClient bankClient, IPaymentsRepository payment
 {
     public async Task<Payment> ProcessPaymentAsync(PaymentDetails paymentDetails, CancellationToken ct = default)
     {
-        // TODO: does a payment exist for this request Id?
-        
         var paymentId = Guid.NewGuid().ToString();
         
         var bankRequest = BankPaymentRequest.FromDomain(paymentDetails);
@@ -34,8 +32,6 @@ public class PaymentsService(IBankClient bankClient, IPaymentsRepository payment
         };
         
         paymentsRepository.Add(result);
-        
-        // TODO: store requestId against paymentId
 
         return result;
     }
